@@ -19,7 +19,7 @@ class UsuarioController extends Controller
     public function index()
     {
         try {
-            $historial = Historial_acceso::all();
+            $historial = Historial_acceso::orderBy('fecha', 'desc')->get();
             return HistorilResource::collection($historial);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
