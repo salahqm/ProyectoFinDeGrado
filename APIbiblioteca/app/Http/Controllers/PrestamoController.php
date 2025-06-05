@@ -68,8 +68,8 @@ class PrestamoController extends Controller
                 return response()->json(['error' => 'El socio no existe'], 400);
             }
 
-
-            $multa = Multa::where('id_usuario', $request->id_socio)
+            $usuario = User::find($socio->id_usuario);
+            $multa = Multa::where('id_usuario', $usuario->id)
                 ->where('pagada', false) // o 0, según el tipo de dato
                 ->first();
 
